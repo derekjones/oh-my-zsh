@@ -1,7 +1,7 @@
 alias l="ls -fla"
 
 # Customize to your needs...
-export PATH=/Users/derek/bin:/usr/local/bin:/usr/local/git/bin:Users/derek/pear/bin:/Users/derek/Library/Haskell/bin:$PATH
+export PATH=/usr/local/php5/bin:/Users/derek/bin:/usr/local/bin:/usr/local/git/bin:Users/derek/pear/bin:/Users/derek/Library/Haskell/bin:$PATH
 
 
 WEB_DIR_HOME="${HOME}/Sites"
@@ -25,19 +25,21 @@ ht()
 	done
 
 	cd $dir
-	
+
 	if [[ -d .git ]]; then
 		git status
 	fi
 }
 
+chrome-ellislab()
+{
+	/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-server=localhost:3128 2>&1 &
+}
 
 function parse_git_branch {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "("${ref#refs/heads/}")"
 }
-
-
 
 # Phing
 #export PHP_COMMAND=/usr/bin/php

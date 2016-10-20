@@ -1,4 +1,7 @@
 alias l="ls -fla"
+alias rspec='nocorrect rspec'
+alias bundle='nocorrect bundle'
+alias brewupdate="brew update; brew outdated; brew upgrade --all; brew cleanup"
 
 # Customize to your needs...
 export PATH=/usr/local/php5/bin:/Users/derek/bin:/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:$PATH

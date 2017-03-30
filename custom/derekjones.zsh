@@ -9,6 +9,26 @@ export PATH=/usr/local/php5/bin:/Users/derek/bin:/usr/local/bin:/usr/local/sbin:
 
 WEB_DIR_HOME="${HOME}/Sites"
 
+search-changelog()
+{
+	log=$(git log --reverse -S "$1" -- changelogs)
+
+	if [[ ${log} =~ ^commit[[:space:]]([a-z0-9]{40}) ]]
+	then
+		hash=${match}
+		repo=$(git config --get remote.origin.url)
+
+		if [[ ${repo} =~ git@github\.com:(.*)\.git ]]
+		then
+			open "https://github.com/${match}/commit/${hash}"
+		else
+			echo ${hash}
+		fi
+	else
+		echo "Could not find '$1'"
+	fi
+}
+
 ht()
 {
 	cd ${WEB_DIR_HOME}
@@ -85,7 +105,3 @@ PHING_HOME=/usr/local/Cellar/php56/5.6.9/bin
 PHP_CLASSPATH=${PHING_HOME}/classes
 PATH=${PATH}:${PHING_HOME}
 
-# Boot2Docker stuff
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/derek/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1

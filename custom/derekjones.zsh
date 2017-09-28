@@ -1,7 +1,9 @@
-alias l="ls -fla"
+#alias l="ls -fla"
+alias l="exa -ghlba --git"
 alias rspec='nocorrect rspec'
 alias bundle='nocorrect bundle'
 alias brewupdate="brew update; brew outdated; brew upgrade --all; brew cleanup"
+alias eetools='nocorrect ./eetools'
 
 # Customize to your needs...
 export PATH=/usr/local/php5/bin:/Users/derek/bin:/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:$PATH
@@ -38,7 +40,7 @@ ht()
 	# `tree -di -L 1 --noreport`
 	# `ls -d */`
 	PS3="Where to, cap'n?: "
-	select dir in `find . -maxdepth 1 -type d | sed 's/\.\///' | sed 's/^\.//'`
+	select dir in `find . -maxdepth 1 -type d | sed 's/\.\///' | sed 's/^\.//' | sort -n`
 	do
 		if [[ "$dir" == '' ]]; then
 			echo "Exiting."
